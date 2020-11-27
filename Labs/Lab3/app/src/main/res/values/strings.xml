@@ -1,0 +1,16 @@
+<resources>
+    <!-- String Constants. -->
+    <string name="app_name">Dynamic Time Warping</string>
+    <string name="raw_accelerometer">Raw Accelerometer</string>
+    <string name="training">Training</string>
+    <string name="mode_training">Training Mode</string>
+    <string name="recognition">Recognition</string>
+    <string name="mode_recognition">Recognition Mode</string>
+    <string name="mode_training_desc">Press and hold the screen to start training.</string>
+    <string name="mode_recognition_desc">Press and hold the screen to recognize patterns.</string>
+    <string name="button">START</string>
+    <string name="result">Result: </string>
+    <string name="x">X: </string>
+    <string name="y">Y: </string>
+    <string name="z">Z: </string>
+</resources>
