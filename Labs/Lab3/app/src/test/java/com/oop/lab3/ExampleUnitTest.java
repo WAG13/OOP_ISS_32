@@ -6,9 +6,6 @@ import static org.junit.Assert.*;
 
 import com.oop.lab3.dtw.DTW;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class ExampleUnitTest {
 
     @Test
@@ -39,7 +36,7 @@ public class ExampleUnitTest {
         System.out.println(dtw.compute(first, second).getDistance());
         Assert.assertEquals(0.15384, distance, Math.pow(10,-5));
     }
-    
+
     @Test
     public void testDTWDifferentLength() {
         float[] first = {1, 2, 3, 4, 3, 2, 1};

@@ -1,0 +1,28 @@
+<Computers>
+	<Device>
+		<name>Gamepad</name>
+		<origin>Ukraine</origin>
+		<price>-250.50</price>
+		<critical>falseeee</critical>
+		<Type>
+			<peripheral>false</peripheral>
+			<consumption>15</consumption>
+			<cooler>false</cooler>
+			<group>IODevices</group>
+			<port>USB</port>
+		</Type>
+	</Device>
+	<Device>
+		<name>Gamepad</name>
+		<origin>Ukraine</origin>
+		<price>250.50</price>
+		<critical>false</critical>
+		<Type>
+			<peripheral>false</peripheral>
+			<consumption>15</consumption>
+			<cooler>false</cooler>
+			<group>IODevices</group>
+			<port>USB</port>
+		</Type>
+	</Device>
+</Computers>

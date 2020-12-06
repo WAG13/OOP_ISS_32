@@ -6,7 +6,7 @@ public class Main {
     private static final int TASK_TIME = 3000;
 
     public static void main(String[] args) {
-        try (var executor = new ThreadPool(THREADS_COUNT)) {
+        try (var executor = new CustomThreadPool(THREADS_COUNT)) {
             for (int i = 0; i < TASKS_COUNT; ++i) {
                 int taskNo = i + 1;
                 executor.execute(() -> {
