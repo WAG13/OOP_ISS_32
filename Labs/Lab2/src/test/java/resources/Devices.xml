@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Computers>
+    <Device id="1">
+        <name>Gamepad</name>
+        <origin>Ukraine</origin>
+        <price>250.50</price>
+        <critical>false</critical>
+        <Type>
+            <peripheral>false</peripheral>
+            <consumption>15</consumption>
+            <cooler>false</cooler>
+            <group>IODevices</group>
+            <port>USB</port>
+        </Type>
+    </Device>
+    <Device id="2">
+        <name>Monitor</name>
+        <origin>China</origin>
+        <price>4000</price>
+        <critical>true</critical>
+        <Type>
+            <peripheral>true</peripheral>
+            <consumption>45</consumption>
+            <cooler>false</cooler>
+            <group>Multimedia</group>
+            <port>LPT</port>
+        </Type>
+    </Device>
+
+    <Device id="3">
+        <name>Processor</name>
+        <origin>USA</origin>
+        <price>199.99</price>
+        <critical>true</critical>
+        <Type>
+            <peripheral>true</peripheral>
+            <consumption>20</consumption>
+            <cooler>true</cooler>
+            <group>Other</group>
+            <port>Other</port>
+        </Type>
+    </Device>
+
+</Computers>

@@ -1,0 +1,57 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="Computers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Device" type="device" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="device">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="origin" type="xs:string"/>
+            <xs:element name="price" type="price"/>
+            <xs:element name="critical" type="xs:boolean"/>
+            <xs:element name="Type" type="deviceType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:integer"/>
+    </xs:complexType>
+
+    <xs:simpleType name="price">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="10000000"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="deviceType">
+        <xs:sequence>
+            <xs:element name="peripheral" type="xs:boolean"/>
+            <xs:element name="consumption" type="xs:double"/>
+            <xs:element name="cooler" type="xs:boolean"/>
+            <xs:element name="group" type="Group"/>
+            <xs:element name="port" type="Port"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Group">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IODevices"/>
+            <xs:enumeration value="Multimedia"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Port">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="COM"/>
+            <xs:enumeration value="USB"/>
+            <xs:enumeration value="LPT"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+</xs:schema>
