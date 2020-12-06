@@ -1,4 +1,4 @@
-package michael.scott.algorithm;
+package michaelscottqueue;
 
 import org.junit.jupiter.api.Test;
 

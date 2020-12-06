@@ -1,4 +1,4 @@
-package michael.scott.algorithm;
+package michaelscottqueue;
 
 import java.util.concurrent.atomic.AtomicReference;
 
