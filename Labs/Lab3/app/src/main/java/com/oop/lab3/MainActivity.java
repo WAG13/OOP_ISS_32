@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     /** Colors a LineDataSet. */
     private static void color(final LineDataSet pLineDataSet, final int pColor) {
         // Update the Colors.
-        pLineDataSet.setColor(Color.TRANSPARENT);
+        pLineDataSet.setColor(pColor);
         pLineDataSet.setCircleHoleColor(pColor);
         pLineDataSet.setCircleColor(pColor);
     }
