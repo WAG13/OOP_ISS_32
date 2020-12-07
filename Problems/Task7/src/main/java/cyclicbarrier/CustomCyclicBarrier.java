@@ -6,17 +6,17 @@ public class CustomCyclicBarrier {
     private final int threadsNumber;
     private final Runnable barrierEvent;
     private int waiting;
-    private boolean isBroken;
+    private boolean broken;
 
     public CustomCyclicBarrier(int threadsNumber, Runnable barrierEvent) {
         this.threadsNumber = threadsNumber;
         this.waiting = 0;
         this.barrierEvent = barrierEvent;
-        this.isBroken = false;
+        this.broken = false;
     }
 
     public synchronized void await() throws BrokenBarrierException, InterruptedException {
-        if (this.isBroken) {
+        if (this.broken) {
             throw new BrokenBarrierException();
         }
 
@@ -25,7 +25,7 @@ public class CustomCyclicBarrier {
             try {
                 this.wait();
             } catch (InterruptedException e) {
-                this.isBroken = true;
+                this.broken = true;
                 throw e;
             }
         }
@@ -37,7 +37,7 @@ public class CustomCyclicBarrier {
     }
 
     public boolean isBroken() {
-        return this.isBroken;
+        return this.broken;
     }
 
     public int getThreadsNumber() {
