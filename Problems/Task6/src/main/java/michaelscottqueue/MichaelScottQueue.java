@@ -7,9 +7,9 @@ public class MichaelScottQueue<T> {
     private final AtomicReference<MSNode<T>> tail;
 
     public MichaelScottQueue(){
-        MSNode<T> firstNode = new MSNode<>();
-        head = new AtomicReference<>(firstNode);
-        tail = new AtomicReference<>(firstNode);
+        MSNode<T> dummy = new MSNode<>();
+        head = new AtomicReference<>(dummy);
+        tail = new AtomicReference<>(dummy);
     }
 
     public void enqueue(T data){
