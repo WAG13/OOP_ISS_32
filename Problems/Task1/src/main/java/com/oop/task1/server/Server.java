@@ -5,10 +5,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-public class Server extends Thread{
+public class Server extends Thread {
 
     private static final int PORT = 1234;
-    private static final Logger logger= Logger.getLogger(Server.class.getName());
+    private static final Logger logger = Logger.getLogger(Server.class.getName());
     private File file = new File("tracks.txt");
 
     private boolean exit = false;
@@ -24,17 +24,14 @@ public class Server extends Thread{
         }
     }
 
-//    public static void main(String[] args) {
-//        new Server().run();
-//    }
-
     @Override
     public void run() {
         try {
             while (!exit) {
                 exit = checkConnection();
-                if (!exit && client.isConnected()){
-                    readData();
+                if (!exit && client.isConnected()) {
+                    saveData(readData(new ObjectInputStream(client.getInputStream())));
+                    client.close();
                 }
             }
         } catch (Exception e) {
@@ -51,11 +48,15 @@ public class Server extends Thread{
         serverSocket.close();
     }
 
+    public void setServerSocket(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
+    }
+
     public int getPort() {
         return PORT;
     }
 
-    private boolean checkConnection() {
+    public boolean checkConnection() {
         try {
             client = serverSocket.accept();
             logger.info("Connected.");
@@ -65,22 +66,23 @@ public class Server extends Thread{
         return false;
     }
 
-    private void readData() {
+    public Object readData(ObjectInputStream in) throws IOException {
+        Object object = new Object();
         try {
-            ObjectInputStream in = new ObjectInputStream(client.getInputStream());
-            Object object = in.readObject();
-
-            ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
-            out.writeObject("Server received "+object.toString());
-
-            out.close();
+            object = in.readObject();
+            sendMessage("Server received " + object.toString());
             in.close();
-            client.close();
-
-            saveData(object);
         } catch (IOException | ClassNotFoundException e) {
-            logger.info( "Can't read data.");
+            sendMessage("Can't read data.");
+            logger.info("Can't read data.");
         }
+        return object;
+    }
+
+    public void sendMessage(String text) throws IOException {
+        ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
+        out.writeObject(text);
+        out.close();
     }
 
     private void saveData(Object object) throws IOException {

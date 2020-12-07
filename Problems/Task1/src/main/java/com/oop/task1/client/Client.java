@@ -23,17 +23,10 @@ public class Client extends Thread{
         if (object != null) this.objects.add(object);
     }
 
-//    public static void main(String[] args) {
-//        List<Object> trackList = new ArrayList<>(Arrays.asList( new Track("Queen","Bohemian Rhapsody", 555),
-//                                                                new Track("Basement","Fall", 450),
-//                                                                new Track("Eminem","Fall", 55),
-//                                                                new Track("Eminem","Rap God", 65)));
-//        new Client(trackList).run();
-//    }
-
     @Override
     public void run() {
         for (Object object:objects){
+            connect();
             sendObject(object);
         }
         try {
@@ -45,6 +38,10 @@ public class Client extends Thread{
 
     public String getHost() {
         return HOST;
+    }
+
+    public void setClient(Socket client) {
+        this.client = client;
     }
 
     public int getPort() {
@@ -60,25 +57,30 @@ public class Client extends Thread{
         }
     }
 
-    public void sendObject(Object object) {
-        connect();
+    public boolean sendObject(Object object) {
+
         if (client.isConnected()) {
             try {
                 ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
                 out.writeObject(object);
-                logger.info("Send object "+object.toString());
-
-                ObjectInputStream in = new ObjectInputStream(client.getInputStream());
-                String message = (String)in.readObject();
-                logger.info(message);
-
-                in.close();
+                getServerMessage();
                 out.close();
             } catch (IOException | ClassNotFoundException e) {
                 logger.info("Object wasn't send. Exception handled: " + e.getMessage());
+                return false;
             }
         } else {
             logger.info("Not connected to server.");
+            return false;
         }
+        return true;
+    }
+
+    public String getServerMessage() throws IOException, ClassNotFoundException {
+        ObjectInputStream in = new ObjectInputStream(client.getInputStream());
+        String message = (String)in.readObject();
+        logger.info(message);
+        in.close();
+        return message;
     }
 }
